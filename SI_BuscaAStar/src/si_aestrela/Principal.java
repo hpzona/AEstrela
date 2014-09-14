@@ -1,5 +1,7 @@
 package si_aestrela;
 
+import java.util.ArrayList;
+
 public class Principal {
 
     public static void main(String[] args) {
@@ -34,21 +36,27 @@ public class Principal {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 17, 0}
         };
         Nodo[][] grade = new Nodo[26][26];
+        ArrayList<Nodo> bloqueios = new ArrayList();
         for (int i = 0; i < grade.length; i++) {
             for (int j = 0; j < grade[i].length; j++) {
                 grade[i][j] = new Nodo(i, j);
                 grade[i][j].setCustoG(matriz[i][j]);
+                if(matriz[i][j] == 0){
+                    bloqueios.add(grade[i][j]);
+                }
+                
             }
         }
 //configura grade
         Nodo origem = grade[0][0];
         Nodo destino = grade[25][25];
-        BuscaAEstrela aStar = new BuscaAEstrela(grade, origem, destino);
+        BuscaAEstrela aStar = new BuscaAEstrela(grade, origem, destino, bloqueios);
         long tempo1 = System.nanoTime();
         boolean pesquisaOk = aStar.iniciarPesquisa();
         long tempo2 = System.nanoTime();
         System.out.println("Tempo de pesquisa: " + (tempo2 - tempo1) + "ns");
-        /*if (pesquisaOk) {
+        
+        if (pesquisaOk) {
          System.out.println("Caminho:");
          System.out.println("X\tY");
          //lista caminho encontrado
@@ -58,7 +66,7 @@ public class Principal {
          }
          } else {
          System.out.println("Caminho nao foi encontrado.");
-         }*/
+         }
 //imprime em forma de matriz
         for (int i = 0; i < grade.length; i++) {
             System.out.println("");

@@ -13,7 +13,7 @@ public class BuscaAEstrela {
     private ArrayList<Nodo> listaBloqueios;
     private int distancia;
 
-    public BuscaAEstrela(Nodo grade[][], Nodo origem, Nodo destino) {
+    public BuscaAEstrela(Nodo grade[][], Nodo origem, Nodo destino, ArrayList<Nodo> lb) {
         this.grade = grade;
         this.origem = origem;
         this.destino = destino;
@@ -21,7 +21,7 @@ public class BuscaAEstrela {
         listaAberta = new ArrayList<Nodo>();
         listaFechada = new ArrayList<Nodo>();
         listaCaminho = new ArrayList<Nodo>();
-        listaBloqueios = new ArrayList<Nodo>();
+        listaBloqueios = lb;
     }
 //A pesquisa do A* comeca aqui
 
@@ -64,7 +64,7 @@ public class BuscaAEstrela {
 //quadrado adjacente da direita
         if (direita < grade[0].length) {
             Nodo adjacenteDireta = grade[direita][y];
-            if (!listaFechada.contains(adjacenteDireta) && !listaBloqueios.contains(adjacenteDireta)) { //nao nao for bloqueio e nao estiver na lista fechada
+            if (!listaFechada.contains(adjacenteDireta) && !listaBloqueios.contains(adjacenteDireta)) { // nao for bloqueio e nao estiver na lista fechada
                 int custoG = corrente.getCustoG() + 1; //calcula custo G - soma 1
                 int custoH = Math.abs(destino.getX() - adjacenteDireta.getX()) + //calcula custo H
                         Math.abs(destino.getY() - adjacenteDireta.getY()); //de forma heuristica
