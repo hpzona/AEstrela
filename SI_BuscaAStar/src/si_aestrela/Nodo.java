@@ -5,53 +5,38 @@
  */
 package si_aestrela;
 
-public class Nodo {
+class Nodo {
 
-    private int custoG = 0;
-    private int custoH = 9999;
-    private int x = 0;
-    private int y = 0;
-    private Nodo pai = null;
+    private final String valor;
+    private double valorG;
+    private final double valorH;
+    private double valorF = 0;
+    private Nodo pai;
+    private Borda[] adjacentes;
 
-    public Nodo(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Nodo(String valor, double valorH) {
+        this.valor = valor;
+        this.valorH = valorH;
     }
 
-    public int getCustoF() {
-        return custoG + custoH;
+    public String getValor() {
+        return valor;
     }
 
-    public int getCustoG() {
-        return custoG;
+    public double getValorG() {
+        return valorG;
     }
 
-    public void setCustoG(int custoG) {
-        this.custoG = custoG;
+    public void setValorG(double valorG) {
+        this.valorG = valorG;
     }
 
-    public int getCustoH() {
-        return custoH;
+    public double getValorF() {
+        return valorF;
     }
 
-    public void setCustoH(int custoH) {
-        this.custoH = custoH;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setPosicaoX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setPosicaoY(int y) {
-        this.y = y;
+    public void setValorF(double valorF) {
+        this.valorF = valorF;
     }
 
     public Nodo getPai() {
@@ -62,16 +47,18 @@ public class Nodo {
         this.pai = pai;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return (((Nodo) obj).getX() == x && ((Nodo) obj).getY() == y);
+    public Borda[] getAdjacentes() {
+        return adjacentes;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + this.x;
-        hash = 97 * hash + this.y;
-        return hash;
+    public void setAdjacentes(Borda[] adjacentes) {
+        this.adjacentes = adjacentes;
     }
+
+    double getValorH() {
+        return this.valorH;
+    }
+    
+    
+
 }
