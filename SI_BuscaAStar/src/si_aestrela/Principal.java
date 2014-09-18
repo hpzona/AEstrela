@@ -9,8 +9,8 @@ public class Principal {
         Nodo n2 = new Nodo("Itajai", 155.94);
         Nodo n3 = new Nodo("Palhoca", 156.48);
         Nodo n4 = new Nodo("Bom Retiro", 132);
-        Nodo n5 = new Nodo("Ararangua", 141.55);
-        Nodo n6 = new Nodo("Ararangua", 141.55);
+        Nodo n5 = new Nodo("Laguna", 157.67);
+        Nodo n6 = new Nodo("Ararangua", 141.56);
         Nodo n7 = new Nodo("Lages", 106.77);
         Nodo n8 = new Nodo("Campos Novos", 77.49);
         Nodo n9 = new Nodo("Navegantes", 156.66);
@@ -37,7 +37,7 @@ public class Principal {
 //Florianópolis
         n1.setAdjacentes(new Borda[]{
             new Borda(n2, 70), //Itajai
-            new Borda(n8, 20) //Campos Novos
+            new Borda(n3, 20), //Palhoca
         });
 
 //Itajai
@@ -50,7 +50,7 @@ public class Principal {
 
 //Palhoca
         n3.setAdjacentes(new Borda[]{
-            new Borda(n1, 71), //Florianópolis  
+            new Borda(n1, 20), //Florianópolis  
             new Borda(n2, 80), //Itajai
             new Borda(n4, 100), //Bom Retiro
             new Borda(n5, 100) //Laguna
@@ -195,8 +195,8 @@ public class Principal {
 //Campo Ere
         n22.setAdjacentes(new Borda[]{
             new Borda(n21, 25),  //Sao Lourenco
-            new Borda(n22, 27), //Dionisio Cerqueira
-            new Borda(n23, 35) //Maravilha
+            new Borda(n23, 27), //Dionisio Cerqueira
+            new Borda(n24, 35) //Maravilha
         });
         
 //Dionisio Cerqueira
@@ -234,7 +234,7 @@ public class Principal {
             new Borda(n26, 17) //Irai
         });
 
-        BuscaAEstrela.buscar(n1, n3);
+        BuscaAEstrela.buscar(n1, n27);
         System.out.println("Fim da Busca");
 
     }
