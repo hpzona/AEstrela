@@ -75,18 +75,21 @@ public class BuscaAEstrela {
 
                 if (index < 0) {
                     double g = atual.getValorG() + e.getCusto();
+                    double f = g + e.getAlvo().getValorH();
                     
                     index = abertas.indexOf(e.getAlvo());
                     Nodo aux;
                     if (index < 0){
                         aux = e.getAlvo();
                         aux.setValorG(g);
+                        aux.setValorF(f);
                         aux.setPai(atual);
                         fila.add(aux);
                     } else if (g < abertas.get(index).getValorG()) {
                         aux = e.getAlvo();
                         aux.setPai(atual);
                         aux.setValorG(g);
+                        aux.setValorF(f);
                         aux.setValorH(e.getCusto());
                     }
                 }
