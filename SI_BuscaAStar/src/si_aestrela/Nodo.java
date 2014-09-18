@@ -9,7 +9,7 @@ class Nodo {
 
     private final String valor;
     private double valorG;
-    private final double valorH;
+    private double valorH;
     private double valorF = 0;
     private Nodo pai;
     private Borda[] adjacentes;
@@ -58,7 +58,18 @@ class Nodo {
     double getValorH() {
         return this.valorH;
     }
-    
-    
+
+    void setValorH(double custo) {
+        this.valorH = custo;
+    }
+
+    public Borda getAdj(Nodo a) {
+        for (Borda b : adjacentes) {
+            if (a.getValor().equalsIgnoreCase(b.getAlvo().getValor())) {
+                return b;
+            }
+        }
+        return null;
+    }
 
 }
