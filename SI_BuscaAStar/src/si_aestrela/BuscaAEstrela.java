@@ -114,6 +114,7 @@ public class BuscaAEstrela {
                 lista.add(pilha.pop());
             }
 
+            System.out.println("TOTAL = " + lista.get(lista.size()-1).getValorF());
             return lista;
         }
         return null;
