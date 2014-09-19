@@ -7,20 +7,20 @@ package si_aestrela;
 
 class Nodo {
 
-    private final String valor;
+    private final String nome;
     private double valorG;
     private double valorH;
     private double valorF = 0;
-    private Nodo pai;
+    private Nodo anterior;
     private Borda[] adjacentes;
 
     public Nodo(String valor, double valorH) {
-        this.valor = valor;
+        this.nome = valor;
         this.valorH = valorH;
     }
 
-    public String getValor() {
-        return valor;
+    public String getNome() {
+        return nome;
     }
 
     public double getValorG() {
@@ -39,12 +39,12 @@ class Nodo {
         this.valorF = valorF;
     }
 
-    public Nodo getPai() {
-        return pai;
+    public Nodo getAnterior() {
+        return anterior;
     }
 
-    public void setPai(Nodo pai) {
-        this.pai = pai;
+    public void setAnterior(Nodo pai) {
+        this.anterior = pai;
     }
 
     public Borda[] getAdjacentes() {
@@ -65,7 +65,7 @@ class Nodo {
 
     public Borda getAdj(Nodo a) {
         for (Borda b : adjacentes) {
-            if (a.getValor().equalsIgnoreCase(b.getAlvo().getValor())) {
+            if (a.getNome().equalsIgnoreCase(b.getCidade().getNome())) {
                 return b;
             }
         }

@@ -8,10 +8,10 @@ package si_aestrela;
 public class Borda {
 
     public final double custo;
-    public final Nodo alvo;
+    public final Nodo cidade;
 
     public Borda(Nodo alvo, double custo) {
-        this.alvo = alvo;
+        this.cidade = alvo;
         this.custo = custo;
     }
 
@@ -19,8 +19,8 @@ public class Borda {
         return custo;
     }
 
-    public Nodo getAlvo() {
-       return alvo;
+    public Nodo getCidade() {
+       return cidade;
     }
     
     

@@ -19,16 +19,6 @@ import java.util.Stack;
 
 public class BuscaAEstrela {
 
-    /*    public static List<Nodo> printPath(Nodo target) {
-     List<Nodo> path = new ArrayList<Nodo>();
-     for (Nodo node = target; node != null; node = node.getPai()) {
-     path.add(node);
-     }
-
-     Collections.reverse(path);
-
-     return path;
-     }*/
     public static List<Nodo> buscar(Nodo origem, Nodo destino) {
 
         Set<Nodo> visitado = new HashSet<Nodo>();
@@ -61,7 +51,7 @@ public class BuscaAEstrela {
             Nodo atual = fila.poll();
             abertas.remove(atual);
 
-            if (atual.getValor().equals(destino.getValor())) {
+            if (atual.getNome().equals(destino.getNome())) {
                 encontrou = true;
                 encontrado = atual;
             }
@@ -71,23 +61,23 @@ public class BuscaAEstrela {
 //Percorre todos os adjacentes
             for (Borda e : atual.getAdjacentes()) {
 
-                int index = fechadas.indexOf(e.getAlvo());
+                int index = fechadas.indexOf(e.getCidade());
 
                 if (index < 0) {
                     double g = atual.getValorG() + e.getCusto();
-                    double f = g + e.getAlvo().getValorH();
+                    double f = g + e.getCidade().getValorH();
                     
-                    index = abertas.indexOf(e.getAlvo());
+                    index = abertas.indexOf(e.getCidade());
                     Nodo aux;
                     if (index < 0){
-                        aux = e.getAlvo();
+                        aux = e.getCidade();
                         aux.setValorG(g);
                         aux.setValorF(f);
-                        aux.setPai(atual);
+                        aux.setAnterior(atual);
                         fila.add(aux);
                     } else if (g < abertas.get(index).getValorG()) {
-                        aux = e.getAlvo();
-                        aux.setPai(atual);
+                        aux = e.getCidade();
+                        aux.setAnterior(atual);
                         aux.setValorG(g);
                         aux.setValorF(f);
                         aux.setValorH(e.getCusto());
@@ -102,54 +92,23 @@ public class BuscaAEstrela {
             
 
             pilha.push(encontrado);
-            Nodo anterior = encontrado.getPai();
+            Nodo anterior = encontrado.getAnterior();
 
             while (anterior != null) {
                 pilha.push(anterior);
-                anterior = anterior.getPai();
+                anterior = anterior.getAnterior();
             }
 
-            while (pilha.size() > 0) {
-                System.out.print(pilha.peek().getValor() + ">>>>");
+            while (pilha.size() > 1) {
+                System.out.print(pilha.peek().getNome() + " >>>> ");
                 lista.add(pilha.pop());
             }
+            System.out.print(pilha.peek().getNome());
+            lista.add(pilha.pop());
 
-            System.out.println("TOTAL = " + lista.get(lista.size()-1).getValorF());
+            System.out.println("\n\nDistancia Total: " + lista.get(lista.size()-1).getValorF());
             return lista;
         }
         return null;
     }
 }
-
-/*double custoAtual = e.getCusto();
- double novoG = atual.getValorG() + custoAtual;
- double novoF = novoG + adj.getValorH();
-
- //E se ele não for visitado e nova conta do F é menor que o calculo antigo ou ele não está na fila
- if ((visitado.contains(adj) || fila.contains(adj))
- && novoF >= adj.getValorF()) {                 adj.setValorG(novoG);
- adj.setValorF(novoF);
- } else if (!fila.contains(adj)
- || novoF < adj.getValorF()) {
-
- adj.setPai(atual);
- adj.setValorG(novoG);
- adj.setValorF(novoF);
- total += e.getCusto();
-
- if (fila.contains(adj)) {
- fila.remove(adj);
- }
-
- fila.add(adj);
-
- }
-
-
- }
- }
-
- System.out.println("TOTAL = " + total);
- }
-
- }*/
